@@ -1,0 +1,36 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Your Income</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Amount (₹)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in income %}
+    <tr>
+      <td>{{ item.date }}</td>
+      <td>{{ item.category }}</td>
+      <td>₹{{ item.amount }}</td>
+      <td>
+        <a href="{% url 'edit_income' item.pk %}" class="btn btn-sm btn-primary">Edit</a>
+        <a href="{% url 'delete_income' item.pk %}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No income entries yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'add_income' %}" class="btn btn-success">Add New Income</a>
+<a href="{% url 'home' %}" class="btn btn-secondary ms-2">Back to Home</a>
+{% endblock %}

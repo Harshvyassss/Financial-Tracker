@@ -1,0 +1,15 @@
+<!-- tracker/templates/tracker/delete_income.html -->
+
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Confirm Delete Income</h2>
+
+<p>Are you sure you want to delete the income record: <strong>{{ income.source }} - ${{ income.amount }}</strong> dated {{ income.date }}?</p>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, Delete</button>
+  <a href="{% url 'income_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

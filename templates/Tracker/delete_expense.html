@@ -1,0 +1,15 @@
+<!-- tracker/templates/tracker/delete_expense.html -->
+
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Confirm Delete Expense</h2>
+
+<p>Are you sure you want to delete the expense record: <strong>{{ expense.category }} - ${{ expense.amount }}</strong> dated {{ expense.date }}?</p>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, Delete</button>
+  <a href="{% url 'expense_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
